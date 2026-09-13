@@ -358,7 +358,9 @@ function CaseWorkspace({
   const latestSuggestions = suggestionParts.at(-1);
   const replies =
     latestSuggestions?.type === "tool-suggestReplies" &&
-    latestSuggestions.state === "output-available"
+    latestSuggestions.state === "output-available" &&
+    latestSuggestions.output.proposalStatus ===
+      (current.proposal?.status ?? null)
       ? latestSuggestions.output.replies
       : [];
   const report = caseReport(current.scenario);
@@ -416,7 +418,9 @@ function CaseWorkspace({
               </span>
               <span>
                 <strong>Support assistant</strong>
-                <small>Investigates and proposes. You make the call.</small>
+                <small>
+                  Investigates and drafts replies. You approve replacements.
+                </small>
               </span>
             </div>
             <span className="model-label">{MODEL} · medium</span>
@@ -546,7 +550,7 @@ function CaseWorkspace({
               />
               <div>
                 <span>
-                  <LockKeyhole size={12} /> Human approval required for
+                  <LockKeyhole size={12} /> Your approval is required for
                   replacements
                 </span>
                 <button
@@ -669,7 +673,8 @@ function CaseWorkspace({
                     {current.proposal.status === "pending" && (
                       <>
                         <div className="approval-note">
-                          <LockKeyhole size={14} /> Waiting for a human decision
+                          <LockKeyhole size={14} /> Review this proposal, then
+                          approve or decline it.
                         </div>
                         {current.reviewer ? (
                           <div className="decision-buttons">

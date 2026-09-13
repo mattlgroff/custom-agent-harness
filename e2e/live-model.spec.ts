@@ -44,6 +44,26 @@ test("real streamed proposal, database restart, human approval and follow-up", a
   await expect(page.getByRole("status")).toHaveCount(0, { timeout: 90000 });
   // The chip submits a normal text turn and is retained after a reload.
   await expect(page.getByText(reply, { exact: true }).first()).toBeVisible();
+  await page
+    .getByRole("textbox", { name: "Message the support assistant" })
+    .fill(
+      "Let the customer know the one-mug replacement request is pending human review.",
+    );
+  await page.getByRole("button", { name: "Send message" }).click();
+  await expect(
+    page.locator(".is-assistant").last().locator("blockquote"),
+  ).toBeVisible({ timeout: 90000 });
+  await expect(page.getByRole("status")).toHaveCount(0, { timeout: 90000 });
+  const pendingDraft = page
+    .locator(".is-assistant")
+    .last()
+    .locator("blockquote");
+  await expect(pendingDraft).not.toContainText(
+    /human|reviewer|\bAI\b|approved|shipped/i,
+  );
+  await expect(
+    page.getByRole("heading", { name: "Replacement proposed" }),
+  ).toBeVisible();
   // Restart only this project's database. Persisted state must remain independent of the request.
   execFileSync("docker", ["compose", "restart", "postgres"], {
     stdio: "pipe",
@@ -69,15 +89,21 @@ test("real streamed proposal, database restart, human approval and follow-up", a
   ).toBeVisible();
   await page
     .getByRole("textbox", { name: "Message the support assistant" })
-    .fill(
-      "The reviewer has made a decision. Check the saved resolution and tell me what happened.",
-    );
+    .fill("Let the customer know.");
   await page.getByRole("button", { name: "Send message" }).click();
   await expect(
     page.getByRole("button", { name: "Check resolution Completed" }).last(),
   ).toBeVisible({ timeout: 90000 });
   await expect(page.getByRole("status")).toHaveCount(0, { timeout: 90000 });
   await expect(page.locator("main [role=alert]")).toHaveCount(0);
+  const lastAssistant = page.locator(".is-assistant").last();
+  await expect(lastAssistant).toContainText(/Customer reply draft/i);
+  await expect(lastAssistant.locator("blockquote")).not.toContainText(
+    /human|reviewer|\bAI\b|pending|demo|simulat/i,
+  );
+  await expect(lastAssistant).not.toContainText(
+    /pending human review|waiting for human|has been shipped|I.ve (sent|notified)/i,
+  );
   await page.screenshot({
     path: "docs/screenshots/live-approved.png",
     fullPage: true,

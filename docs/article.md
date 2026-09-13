@@ -62,6 +62,8 @@ The selected case is part of the input. Before every turn, the server loads the 
 
 The assistant can also call `suggestReplies` with up to three short next messages. AI Elements renders them above the composer. Clicking one submits an ordinary user message through the same chat endpoint. Suggestions are saved with the conversation, disappear while a new turn runs, and confer no approval authority.
 
+Customer communication is a separate audience from the operator conversation. A request to notify the customer produces a labeled draft, because this example has no sending tool. The draft uses the saved resolution and omits internal review terminology. Approval instructions belong outside that draft and address the operator directly. Suggested replies are hidden when their saved proposal status no longer matches the case.
+
 The agent has five business tools and one presentation tool:
 
 | Tool                 | Purpose                                                  |
