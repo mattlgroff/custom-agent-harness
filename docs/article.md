@@ -1,5 +1,21 @@
 # Building Custom Agent Harnesses for Specific Domains Using Vercel's AI SDK
 
+## What is an agent harness?
+
+An agent harness is the software around an AI model that lets it work on a task: it supplies instructions and context, exposes tools, executes tool calls, carries results into the next turn, and controls when execution continues or stops.
+
+The model requests an action. The harness runs the allowed operation and gives the result back to the model. That is how an assistant can look up an order, check inventory, and propose a replacement instead of only describing those steps.
+
+### How other people define a harness
+
+HumanLayer describes a coding agent's harness as “the agent’s runtime,” connecting its configuration and capabilities to how the model interacts with its environment. That definition comes from **Kyle's** [*Skill Issue: Harness Engineering for Coding Agents*](https://www.humanlayer.dev/blog/skill-issue-harness-engineering-for-coding-agents), published March 12, 2026.
+
+[Cloudflare's documentation](https://developers.cloudflare.com/agents/harnesses/) describes the harness through its responsibilities on each turn: assembling prompts, handling tools and their results, preserving messages, streaming responses, and deciding whether to continue. It also explicitly describes building your own harness using an SDK.
+
+I use that framing here. We're building a narrow customer-support agent harness on top of Vercel's AI SDK. The SDK supplies the model-and-tools loop; our application supplies case context, support tools, conversation persistence, execution limits, and approval enforcement. AI Elements supplies the interface.
+
+An **agent harness** runs the agent. An **eval harness** runs test conversations against it and checks the results. This walkthrough includes both, so we can inspect what we built and compare models on the same support tasks.
+
 ## Start With Something Someone Can Use
 
 I wanted a concrete example of a custom agent harness that people could run, inspect, and adapt to their own application.
@@ -15,16 +31,6 @@ The stack is Next.js, Vercel's AI SDK, AI Elements, and PostgreSQL. PostgreSQL r
 ![The Parcel and Pine local support workbench](screenshots/workbench.png)
 
 _The actual local application. Each scenario uses isolated, fictional store data._
-
-## What I Mean by a Harness
-
-The [LangChain article about custom agent harnesses](https://www.langchain.com/blog/how-to-build-a-custom-agent-harness) was the starting point for this project. Its useful question is how to give an agent the context and capabilities its task actually requires.
-
-Calling something a “domain-specific harness” does not explain what it does. The useful part is identifying the pieces you control.
-
-In this example, the harness consists of the instructions, available tools, context supplied on each request, execution limits, and application code that validates and records actions. The agent is what runs inside those boundaries to help with damaged orders.
-
-The customization surfaces are ordinary TypeScript files. You can read the prompt, change a tool, adjust the policy, and test the resulting behavior. You do not need to reverse-engineer a hidden support workflow.
 
 ## Why I Used the AI SDK
 
