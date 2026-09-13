@@ -23,7 +23,8 @@ export const scenarios = [
     id: "missing",
     title: "Something arrived damaged",
     label: "Clarification needed",
-    description: "The customer has not identified the order or item.",
+    description:
+      "The order is linked, but the damaged item and quantity are unknown.",
     prompt: "Something in my delivery was damaged. Can you help?",
   },
   {
@@ -64,4 +65,19 @@ export function fixture(scenario: string): { order: Order; stock: number } {
     },
     stock: scenario === "stock" ? 0 : 12,
   };
+}
+
+// Seeded customer reports are shared by the workbench and server-side agent context.
+export function caseReport(scenario: string) {
+  return scenario === "missing"
+    ? {
+        description: "Something in my delivery was damaged.",
+        item: null,
+        quantity: null,
+      }
+    : {
+        description: "One ceramic mug arrived broken.",
+        item: "Everyday ceramic mug",
+        quantity: 1,
+      };
 }

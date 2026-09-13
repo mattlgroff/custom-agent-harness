@@ -17,10 +17,9 @@ test("real streamed proposal, database restart, human approval and follow-up", a
     page.getByRole("heading", { name: "A mug arrived broken", level: 1 }),
   ).toBeVisible();
   await page
-    .getByRole("button", {
-      name: "One of the mugs in order PP-1001 arrived broken. Can you arrange a replacement?",
-    })
-    .click();
+    .getByRole("textbox", { name: "Message the support assistant" })
+    .fill("Let's replace it for them.");
+  await page.getByRole("button", { name: "Send message" }).click();
   await expect(
     page.getByRole("heading", { name: "Replacement proposed" }),
   ).toBeVisible({ timeout: 90000 });
@@ -29,10 +28,22 @@ test("real streamed proposal, database restart, human approval and follow-up", a
   await expect(
     page.getByRole("button", { name: "Save replacement proposal Completed" }),
   ).toBeVisible();
+  await expect(
+    page.getByLabel("Suggested replies").getByRole("button").first(),
+  ).toBeVisible();
   await page.screenshot({
     path: "docs/screenshots/live-proposal.png",
     fullPage: true,
   });
+  const suggestion = page
+    .getByLabel("Suggested replies")
+    .getByRole("button")
+    .first();
+  const reply = await suggestion.innerText();
+  await suggestion.click();
+  await expect(page.getByRole("status")).toHaveCount(0, { timeout: 90000 });
+  // The chip submits a normal text turn and is retained after a reload.
+  await expect(page.getByText(reply, { exact: true }).first()).toBeVisible();
   // Restart only this project's database. Persisted state must remain independent of the request.
   execFileSync("docker", ["compose", "restart", "postgres"], {
     stdio: "pipe",
@@ -43,6 +54,7 @@ test("real streamed proposal, database restart, human approval and follow-up", a
     timeout: 30000,
   });
   await page.reload();
+  await expect(page.getByText(reply, { exact: true }).first()).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Replacement proposed" }),
   ).toBeVisible();
@@ -62,7 +74,7 @@ test("real streamed proposal, database restart, human approval and follow-up", a
     );
   await page.getByRole("button", { name: "Send message" }).click();
   await expect(
-    page.getByRole("button", { name: "Check resolution Completed" }),
+    page.getByRole("button", { name: "Check resolution Completed" }).last(),
   ).toBeVisible({ timeout: 90000 });
   await expect(page.getByRole("status")).toHaveCount(0, { timeout: 90000 });
   await expect(page.locator("main [role=alert]")).toHaveCount(0);
@@ -72,7 +84,7 @@ test("real streamed proposal, database restart, human approval and follow-up", a
   });
   await page.reload();
   await expect(
-    page.getByRole("button", { name: "Check resolution Completed" }),
+    page.getByRole("button", { name: "Check resolution Completed" }).last(),
   ).toBeVisible();
   expect(browserErrors).toEqual([]);
 });

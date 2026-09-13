@@ -45,7 +45,7 @@ Open **http://localhost:3000**. Docker Compose starts only PostgreSQL, bound to 
 
 ## Try the workflow
 
-1. Open **A mug arrived broken** and send the suggested customer message.
+1. Open **A mug arrived broken** and send “Let's replace it for them.” The assistant already knows the selected case. Click an assistant-suggested reply above the composer to send a follow-up.
 2. Inspect the order, policy, stock, and proposal tool calls.
 3. Confirm that the proposal is pending and stock has not changed.
 4. Select **Unlock reviewer controls** and enter the `OPERATOR_TOKEN` from `.env.local`. Do not paste it into the chat.
@@ -80,15 +80,15 @@ GitHub Actions runs typecheck, lint, deterministic tests, production build, and 
 
 ## Read the code
 
-| File                                                | Responsibility                                                      |
-| --------------------------------------------------- | ------------------------------------------------------------------- |
-| [agent.ts](src/lib/agent.ts)                        | Instructions, five scoped tools, eight-step limit, medium reasoning |
-| [model.ts](src/lib/model.ts)                        | Direct OpenAI or Bedrock connection; no automatic fallback          |
-| [chat route](src/app/api/chat/route.ts)             | Trusted history, input limits, run lease, streaming and persistence |
-| [store.ts](src/lib/store.ts)                        | Eligibility, proposals, transactions and duplicate prevention       |
-| [auth.ts](src/lib/auth.ts)                          | Local browser ownership and separate reviewer credential            |
-| [decisions route](src/app/api/decisions/route.ts)   | Human-only approval and rejection                                   |
-| [support-desk.tsx](src/components/support-desk.tsx) | AI Elements conversation/tools and case UI                          |
+| File                                                | Responsibility                                                                               |
+| --------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| [agent.ts](src/lib/agent.ts)                        | Instructions, five business tools plus suggested replies, eight-step limit, medium reasoning |
+| [model.ts](src/lib/model.ts)                        | Direct OpenAI or Bedrock connection; no automatic fallback                                   |
+| [chat route](src/app/api/chat/route.ts)             | Trusted history, input limits, run lease, streaming and persistence                          |
+| [store.ts](src/lib/store.ts)                        | Eligibility, proposals, transactions and duplicate prevention                                |
+| [auth.ts](src/lib/auth.ts)                          | Local browser ownership and separate reviewer credential                                     |
+| [decisions route](src/app/api/decisions/route.ts)   | Human-only approval and rejection                                                            |
+| [support-desk.tsx](src/components/support-desk.tsx) | AI Elements conversation/tools and case UI                                                   |
 
 See [architecture](docs/architecture.md), [sources](docs/sources.md), and [verification](docs/verification/README.md).
 

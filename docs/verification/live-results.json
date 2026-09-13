@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-09-13T19:43:50.022Z",
+  "verifiedAt": "2026-09-13T20:20:44.980Z",
   "results": [
     {
       "scenario": "damaged",
@@ -7,26 +7,27 @@
       "model": "gpt-5.6-sol",
       "provider": "bedrock",
       "reasoningEffort": "medium",
-      "text": "I’ve submitted a proposal to replace one broken Everyday ceramic mug from order PP-1001. It is **pending human review** and has not yet been approved or shipped.",
+      "text": "A replacement for **1 broken mug** has been proposed. It is **pending human review** and has not been approved or shipped.",
       "tools": [
         "lookupOrder",
         "readPolicy",
         "checkStock",
-        "proposeReplacement"
+        "proposeReplacement",
+        "suggestReplies"
       ],
       "usage": {
-        "inputTokens": 1810,
+        "inputTokens": 3469,
         "inputTokenDetails": {
-          "noCacheTokens": 1810,
+          "noCacheTokens": 2387,
           "cacheReadTokens": 0,
-          "cacheWriteTokens": 0
+          "cacheWriteTokens": 1082
         },
-        "outputTokens": 209,
+        "outputTokens": 250,
         "outputTokenDetails": {
-          "textTokens": 134,
-          "reasoningTokens": 75
+          "textTokens": 161,
+          "reasoningTokens": 89
         },
-        "totalTokens": 2019
+        "totalTokens": 3719
       }
     },
     {
@@ -35,21 +36,23 @@
       "model": "gpt-5.6-sol",
       "provider": "bedrock",
       "reasoningEffort": "medium",
-      "text": "Sure. Please provide:\n\n- Your order number\n- The damaged item\n- The quantity damaged",
-      "tools": [],
+      "text": "I can help. Which item was damaged, how many were damaged, and what damage did you notice?",
+      "tools": [
+        "suggestReplies"
+      ],
       "usage": {
-        "inputTokens": 353,
+        "inputTokens": 1329,
         "inputTokenDetails": {
-          "noCacheTokens": 353,
+          "noCacheTokens": 1329,
           "cacheReadTokens": 0,
           "cacheWriteTokens": 0
         },
-        "outputTokens": 23,
+        "outputTokens": 126,
         "outputTokenDetails": {
-          "textTokens": 23,
-          "reasoningTokens": 0
+          "textTokens": 81,
+          "reasoningTokens": 45
         },
-        "totalTokens": 376
+        "totalTokens": 1455
       }
     },
     {
@@ -58,21 +61,26 @@
       "model": "gpt-5.6-sol",
       "provider": "bedrock",
       "reasoningEffort": "medium",
-      "text": "How many mugs from order PP-1003 arrived broken?",
-      "tools": [],
+      "text": "I can’t propose a replacement. The order was delivered July 20, 2026, and the policy reference date is September 13, 2026—outside the 30-day damage-report window. No replacement has been approved or shipped.",
+      "tools": [
+        "lookupOrder",
+        "readPolicy",
+        "checkStock",
+        "suggestReplies"
+      ],
       "usage": {
-        "inputTokens": 358,
+        "inputTokens": 2510,
         "inputTokenDetails": {
-          "noCacheTokens": 358,
+          "noCacheTokens": 1457,
           "cacheReadTokens": 0,
-          "cacheWriteTokens": 0
+          "cacheWriteTokens": 1053
         },
-        "outputTokens": 34,
+        "outputTokens": 302,
         "outputTokenDetails": {
-          "textTokens": 18,
-          "reasoningTokens": 16
+          "textTokens": 166,
+          "reasoningTokens": 136
         },
-        "totalTokens": 392
+        "totalTokens": 2812
       }
     },
     {
@@ -81,21 +89,26 @@
       "model": "gpt-5.6-sol",
       "provider": "bedrock",
       "reasoningEffort": "medium",
-      "text": "How many mugs in order PP-1004 arrived broken?",
-      "tools": [],
+      "text": "Order PP-1004 is eligible for damage replacement, but the mug is currently out of stock. I can’t submit a replacement proposal until stock is available.",
+      "tools": [
+        "lookupOrder",
+        "readPolicy",
+        "checkStock",
+        "suggestReplies"
+      ],
       "usage": {
-        "inputTokens": 358,
+        "inputTokens": 2516,
         "inputTokenDetails": {
-          "noCacheTokens": 358,
+          "noCacheTokens": 1451,
           "cacheReadTokens": 0,
-          "cacheWriteTokens": 0
+          "cacheWriteTokens": 1065
         },
-        "outputTokens": 30,
+        "outputTokens": 299,
         "outputTokenDetails": {
-          "textTokens": 18,
-          "reasoningTokens": 12
+          "textTokens": 143,
+          "reasoningTokens": 156
         },
-        "totalTokens": 388
+        "totalTokens": 2815
       }
     }
   ]

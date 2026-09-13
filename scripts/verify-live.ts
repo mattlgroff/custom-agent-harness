@@ -20,7 +20,7 @@ try {
     const id = await createCase(owner, scenario.id);
     const text =
       scenario.id === "damaged"
-        ? `${scenario.prompt} Exactly one mug is damaged.`
+        ? "Let's replace it for them."
         : scenario.prompt;
     const run = await beginRun(id, owner, {
       id: randomUUID(),

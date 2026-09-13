@@ -14,7 +14,7 @@ The stack is Next.js, Vercel's AI SDK, AI Elements, and PostgreSQL. PostgreSQL r
 
 ![The Parcel and Pine local support workbench](screenshots/workbench.png)
 
-*The actual local application. Each scenario uses isolated, fictional store data.*
+_The actual local application. Each scenario uses isolated, fictional store data._
 
 ## What I Mean by a Harness
 
@@ -54,19 +54,23 @@ A proposal does not change stock. Approval does. Those are different database op
 
 ![A real model-backed replacement proposal awaiting human review](screenshots/live-proposal.png)
 
-*The assistant investigated the order and saved a proposal. No replacement has been fulfilled.*
+_The assistant investigated the order and saved a proposal. No replacement has been fulfilled._
 
 ## Keep the Tool Surface Small
 
-The agent has five tools:
+The selected case is part of the input. Before every turn, the server loads the authorized case and supplies its order, customer report, damaged quantity, stock, and saved resolution. The page displays the same seeded customer report. “Let's replace it for them” should work without retyping the order number. Missing damage details stay unknown; buying two mugs does not mean two mugs were damaged.
 
-| Tool | Purpose |
-| --- | --- |
-| `lookupOrder` | Find the customer-provided order number within this case |
-| `readPolicy` | Read the applicable damaged-item policy |
-| `checkStock` | Check replacement availability |
-| `proposeReplacement` | Validate and save a pending proposal |
-| `checkResolution` | Read the actual proposal and receipt status |
+The assistant can also call `suggestReplies` with up to three short next messages. AI Elements renders them above the composer. Clicking one submits an ordinary user message through the same chat endpoint. Suggestions are saved with the conversation, disappear while a new turn runs, and confer no approval authority.
+
+The agent has five business tools and one presentation tool:
+
+| Tool                 | Purpose                                                  |
+| -------------------- | -------------------------------------------------------- |
+| `lookupOrder`        | Find the customer-provided order number within this case |
+| `readPolicy`         | Read the applicable damaged-item policy                  |
+| `checkStock`         | Check replacement availability                           |
+| `proposeReplacement` | Validate and save a pending proposal                     |
+| `checkResolution`    | Read the actual proposal and receipt status              |
 
 The case and browser owner are bound by the server. They are not arguments the model can choose. If the model asks for an order outside its case, the tool does not return it.
 
@@ -80,7 +84,7 @@ return new ToolLoopAgent({
   providerOptions: {
     openai: {
       forceReasoning: true,
-      reasoningEffort: 'medium',
+      reasoningEffort: "medium",
       reasoningSummary: null,
       store: false,
     },
@@ -111,7 +115,7 @@ Repeating the request returns the same receipt. It does not decrement inventory 
 
 ![The recorded replacement and the assistant's status follow-up](screenshots/live-approved.png)
 
-*The reviewer approved the saved proposal, and the assistant checked the resulting receipt. This records a simulated replacement, not a real shipment.*
+_The reviewer approved the saved proposal, and the assistant checked the resulting receipt. This records a simulated replacement, not a real shipment._
 
 The local reviewer token keeps the example small enough to follow. It is not a production identity system. If you adapt this for real users, replace that mechanism with authentication and authorization appropriate to your application.
 
@@ -135,7 +139,7 @@ Kyle's HumanLayer post, [Skill Issue: Harness Engineering for Coding Agents](htt
 
 I think that applies here too. We need domain rules and an approval boundary because the task requires them. We do not need a collection of skills, subagents, MCP servers, memory systems, and custom compaction strategies just to make the architecture look complete.
 
-This example starts with five tools and a short prompt. If an adapted version repeatedly misses policy details, returns noisy context, or loses track of a larger task, that is evidence to investigate. It is not a reason to install every possible agent feature in advance.
+This example starts with five business tools, a suggested-reply tool, and a short prompt. If an adapted version repeatedly misses policy details, returns noisy context, or loses track of a larger task, that is evidence to investigate. It is not a reason to install every possible agent feature in advance.
 
 The provider configuration and streaming serialization fixes are actual findings from building this project. I am not claiming that we benchmarked this harness against another framework or established a general reliability improvement.
 

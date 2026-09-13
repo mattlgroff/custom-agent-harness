@@ -2,6 +2,18 @@ import { afterEach, expect, it, vi } from "vitest";
 import { z } from "zod";
 import { createSupportAgent } from "../src/lib/agent";
 
+vi.mock("../src/lib/store", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("../src/lib/store")>()),
+  caseView: vi.fn(async () => ({
+    id: "test-case",
+    scenario: "damaged",
+    order: { number: "PP-1001", customer: "Alex Morgan", purchased: 2 },
+    stock: 12,
+    proposal: null,
+    receipt: null,
+  })),
+}));
+
 afterEach(() => {
   vi.unstubAllEnvs();
   vi.unstubAllGlobals();
@@ -55,6 +67,10 @@ it("sends medium reasoning and the Bedrock model ID on the wire without approval
       tools: z.array(z.object({ name: z.string() })),
     })
     .parse(captured);
+  const wire = JSON.stringify(captured);
+  expect(wire).toContain("PP-1001");
+  expect(wire).toContain("One ceramic mug arrived broken.");
+  expect(wire).not.toContain("test-owner");
   expect(sent.reasoning.effort).toBe("medium");
   expect(sent.model).toBe("openai.gpt-5.6-sol");
   expect(sent.store).toBe(false);
@@ -62,6 +78,7 @@ it("sends medium reasoning and the Bedrock model ID on the wire without approval
     "https://bedrock-mantle.us-east-2.api.aws/openai/v1/responses",
   );
   expect(sent.tools.map((t) => t.name)).toEqual([
+    "suggestReplies",
     "lookupOrder",
     "readPolicy",
     "checkStock",

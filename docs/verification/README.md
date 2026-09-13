@@ -3,10 +3,10 @@
 Verification is separated by what each check can establish:
 
 - `tests/store.test.ts`: actual PostgreSQL transactions, eligibility, concurrent approval replay, rejection, ownership, immutable proposals, message deduplication and stale-run fencing.
-- `tests/agent.test.ts`: captures the generated provider request with a mock transport and asserts the Bedrock endpoint, GPT-5.6 Sol model ID, `reasoning.effort=medium`, disabled response storage, and tool surface. It is not a live inference test.
+- `tests/agent.test.ts`: captures the generated provider request with a mock transport and asserts the Bedrock endpoint, GPT-5.6 Sol model ID, `reasoning.effort=medium`, disabled response storage, tool surface, and selected case context. It is not a live inference test.
 - `e2e/workbench.spec.ts`: browser rendering, mobile width, real authenticated approval, persistence, CSRF, case ownership and forged assistant-message rejection. Conversation/proposal setup is a deterministic fixture.
 - `scripts/verify-live.ts`: four real model scenarios. It checks the eligible proposal and tools, no autonomous fulfillment, and no proposal for missing information, out-of-window orders or unavailable stock. The generated `live-results.json` records the time, model output, tools and usage. A single run is functional evidence, not a reliability benchmark.
-- `e2e/live-model.spec.ts`: real streamed model conversation, PostgreSQL restart, human approval, model status follow-up and reload. It requires `RUN_LIVE=1` and is excluded from standard CI.
+- `e2e/live-model.spec.ts`: real streamed model conversation starting with “Let's replace it for them,” assistant-chosen suggestions, clicking a suggestion to submit a persisted chat turn, PostgreSQL restart, human approval, model status follow-up and reload. It requires `RUN_LIVE=1` and is excluded from standard CI.
 
 The successful live path uses Amazon Bedrock with `openai.gpt-5.6-sol`. Direct OpenAI generation could not be verified from the implementation environment: it returned `401 token_invalidated` with IDE-specific routing headers. That observation does not establish the account's usage tier or independently diagnose the credential. No automatic model/provider fallback is implemented.
 

@@ -42,7 +42,14 @@ import {
   ToolInput,
   ToolOutput,
 } from "@/components/ai-elements/tool";
-import { scenarios, MODEL, POLICY, type Order } from "@/lib/fixtures";
+import { Suggestion, Suggestions } from "@/components/ai-elements/suggestion";
+import {
+  scenarios,
+  MODEL,
+  POLICY,
+  caseReport,
+  type Order,
+} from "@/lib/fixtures";
 import type { SupportMessage } from "@/lib/agent";
 
 type Summary = { id: string; scenario: string; created_at: string };
@@ -339,6 +346,22 @@ function CaseWorkspace({
       void refresh();
     },
   });
+  const lastMessage = messages.at(-1);
+  const suggestionParts =
+    lastMessage?.role === "assistant"
+      ? lastMessage.parts.filter(
+          (part) =>
+            part.type === "tool-suggestReplies" &&
+            part.state === "output-available",
+        )
+      : [];
+  const latestSuggestions = suggestionParts.at(-1);
+  const replies =
+    latestSuggestions?.type === "tool-suggestReplies" &&
+    latestSuggestions.state === "output-available"
+      ? latestSuggestions.output.replies
+      : [];
+  const report = caseReport(current.scenario);
   const streaming = status === "submitted" || status === "streaming";
   useEffect(() => {
     if (!streaming && !current.running) return;
@@ -436,6 +459,7 @@ function CaseWorkspace({
                         return (
                           <MessageResponse key={i}>{part.text}</MessageResponse>
                         );
+                      if (part.type === "tool-suggestReplies") return null;
                       if (isToolUIPart(part))
                         return (
                           <Tool key={part.toolCallId} className="tool-card">
@@ -484,6 +508,19 @@ function CaseWorkspace({
             <ConversationScrollButton />
           </Conversation>
           <div className="composer-area">
+            {!streaming && !current.running && !error && replies.length > 0 && (
+              <Suggestions className="mb-3" aria-label="Suggested replies">
+                {replies.map((reply) => (
+                  <Suggestion
+                    key={reply}
+                    suggestion={reply}
+                    onClick={(text) => {
+                      void sendMessage({ text });
+                    }}
+                  />
+                ))}
+              </Suggestions>
+            )}
             <form
               className="composer"
               onSubmit={(event) => {
@@ -556,6 +593,13 @@ function CaseWorkspace({
                   <p>Sage / 12 oz</p>
                   <small>{current.order.sku}</small>
                 </div>
+              </div>
+              <div className="mb-4 rounded-lg border border-[#e3e8da] bg-[#f8f9f4] p-3 text-sm leading-relaxed">
+                <strong>Customer report</strong>
+                <p>{report.description}</p>
+                <p>
+                  Damaged quantity: {report.quantity ?? "Not yet confirmed"}
+                </p>
               </div>
               <dl className="order-details">
                 <div>
