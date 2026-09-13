@@ -1,0 +1,102 @@
+{
+  "verifiedAt": "2026-09-13T19:43:50.022Z",
+  "results": [
+    {
+      "scenario": "damaged",
+      "pass": true,
+      "model": "gpt-5.6-sol",
+      "provider": "bedrock",
+      "reasoningEffort": "medium",
+      "text": "I’ve submitted a proposal to replace one broken Everyday ceramic mug from order PP-1001. It is **pending human review** and has not yet been approved or shipped.",
+      "tools": [
+        "lookupOrder",
+        "readPolicy",
+        "checkStock",
+        "proposeReplacement"
+      ],
+      "usage": {
+        "inputTokens": 1810,
+        "inputTokenDetails": {
+          "noCacheTokens": 1810,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0
+        },
+        "outputTokens": 209,
+        "outputTokenDetails": {
+          "textTokens": 134,
+          "reasoningTokens": 75
+        },
+        "totalTokens": 2019
+      }
+    },
+    {
+      "scenario": "missing",
+      "pass": true,
+      "model": "gpt-5.6-sol",
+      "provider": "bedrock",
+      "reasoningEffort": "medium",
+      "text": "Sure. Please provide:\n\n- Your order number\n- The damaged item\n- The quantity damaged",
+      "tools": [],
+      "usage": {
+        "inputTokens": 353,
+        "inputTokenDetails": {
+          "noCacheTokens": 353,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0
+        },
+        "outputTokens": 23,
+        "outputTokenDetails": {
+          "textTokens": 23,
+          "reasoningTokens": 0
+        },
+        "totalTokens": 376
+      }
+    },
+    {
+      "scenario": "expired",
+      "pass": true,
+      "model": "gpt-5.6-sol",
+      "provider": "bedrock",
+      "reasoningEffort": "medium",
+      "text": "How many mugs from order PP-1003 arrived broken?",
+      "tools": [],
+      "usage": {
+        "inputTokens": 358,
+        "inputTokenDetails": {
+          "noCacheTokens": 358,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0
+        },
+        "outputTokens": 34,
+        "outputTokenDetails": {
+          "textTokens": 18,
+          "reasoningTokens": 16
+        },
+        "totalTokens": 392
+      }
+    },
+    {
+      "scenario": "stock",
+      "pass": true,
+      "model": "gpt-5.6-sol",
+      "provider": "bedrock",
+      "reasoningEffort": "medium",
+      "text": "How many mugs in order PP-1004 arrived broken?",
+      "tools": [],
+      "usage": {
+        "inputTokens": 358,
+        "inputTokenDetails": {
+          "noCacheTokens": 358,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0
+        },
+        "outputTokens": 30,
+        "outputTokenDetails": {
+          "textTokens": 18,
+          "reasoningTokens": 12
+        },
+        "totalTokens": 388
+      }
+    }
+  ]
+}
