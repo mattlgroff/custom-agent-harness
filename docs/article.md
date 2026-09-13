@@ -4,18 +4,16 @@
 
 An agent harness is the software around an AI model that lets it work on a task. It supplies context and tools, executes the model's tool requests, feeds back the results, and controls when the agent continues or stops.
 
-The model might request an order lookup. The harness runs that lookup and returns the order. The model can then decide whether to check inventory or ask for missing information. The application still controls which operations are allowed.
+For example, the model requests an order lookup. The harness returns the order, giving the model the information it needs to check inventory or ask a follow-up question.
 
 HumanLayer describes a coding agent's harness as “the agent’s runtime” in Kyle's [*Skill Issue: Harness Engineering for Coding Agents*](https://www.humanlayer.dev/blog/skill-issue-harness-engineering-for-coding-agents). [Cloudflare's documentation](https://developers.cloudflare.com/agents/harnesses/) describes the work around each model turn, including prompt construction, tool handling, message persistence, and stopping decisions.
-
-Those definitions apply beyond coding. The task determines what the harness needs to provide:
 
 | Agent | Context it needs | Tools it can use | Application controls |
 | --- | --- | --- | --- |
 | Coding assistant | Repository files, instructions, previous work | Read files, edit code, run tests | File access, command permissions, execution limits |
 | Damaged-order support assistant | Selected order, damage report, policy, saved decisions | Look up an order, check stock, propose a replacement | Case ownership, replacement eligibility, approval |
 
-This post walks through the second example using Next.js, Vercel's AI SDK, AI Elements, and PostgreSQL. If you know TypeScript and have built a web application, you should be able to follow the code, run the example, and change its model. The eval results also show where the assistant still makes poor decisions.
+We'll build the support example with Next.js, Vercel's AI SDK, AI Elements, and PostgreSQL, then compare Sol and Luna on the same conversations. The walkthrough assumes familiarity with TypeScript and web applications.
 
 An **agent harness** runs the agent. An **eval harness** runs test conversations against it and checks the results. The [example repository](https://github.com/mattlgroff/custom-agent-harness) includes both.
 
@@ -27,7 +25,7 @@ The employee types:
 
 > Let's replace it for them.
 
-The assistant should already know which order “it” refers to. The case is open on the page. It should check the order, policy, and stock, then save a proposal for one replacement. The employee reviews that proposal and clicks **Approve**. Afterward, “Let the customer know” should produce a customer reply draft based on the recorded decision.
+The assistant should use the open case to check the order, policy, and stock, then save a proposal for one replacement. The employee reviews that proposal and clicks **Approve**. Afterward, “Let the customer know” should produce a customer reply draft based on the recorded decision.
 
 ![Parcel and Pine support workbench](screenshots/workbench.png)
 
@@ -35,29 +33,25 @@ The assistant should already know which order “it” refers to. The case is op
 
 The store policy requires a damage report within 30 days of delivery, enough stock, and a replacement quantity within the purchased quantity. The scenarios use a fixed reference date so an eligible example does not expire between publication and the day someone runs it.
 
-Approval creates a simulated replacement record and decrements local stock. The POC does not contact customers or ship anything. That distinction matters when evaluating what the assistant says it has done.
+Approval creates a simulated replacement record and decrements local stock. The POC does not contact customers or ship anything.
 
 ## Where the AI SDK fits
 
-The AI SDK is the library I used to build the harness. Its [`ToolLoopAgent`](https://ai-sdk.dev/docs/agents/overview) handles the loop between model calls and tool results. Our code decides what context enters that loop, which tools exist, and what those tools may change.
+The AI SDK’s [`ToolLoopAgent`](https://ai-sdk.dev/docs/agents/overview) handles the loop between model calls and tool results. Our code decides what context enters that loop, which tools exist, and what those tools may change.
 
-The SDK also has a [`HarnessAgent`](https://ai-sdk.dev/docs/ai-sdk-harnesses/overview) integration for established runtimes such as Pi. That is a different integration path. Here, the support application owns the tools and workflow, so I used `ToolLoopAgent`.
+The SDK also has a [`HarnessAgent`](https://ai-sdk.dev/docs/ai-sdk-harnesses/overview) integration for established runtimes such as Pi. I used `ToolLoopAgent` because this application defines its own tools and workflow.
 
-[AI Elements](https://ai-sdk.dev/elements) renders the conversation, tool calls, and suggested replies. The surrounding workbench displays the order and saved resolution. A chat bubble saying “approved” does not update that resolution panel; a successful approval transaction does.
-
-The [LangChain custom-harness article](https://www.langchain.com/blog/how-to-build-a-custom-agent-harness) prompted this project. I wanted an example readers could trace through a web application and evaluate against a specific support job.
+[AI Elements](https://ai-sdk.dev/elements) renders the conversation, tool calls, and suggested replies. The workbench reads the order and resolution directly from the database.
 
 ## Give the agent the case it is working on
 
-The first version got this wrong. The page showed the order, but the agent did not receive that context. When I typed “Let's replace it for them,” it asked for the order number and damage details.
-
-Putting information in a sidebar does not put it in the model's input.
+The first version showed the order on the page but never supplied it to the agent. When I typed “Let's replace it for them,” it asked for the order number and damage details.
 
 The server now loads the authorized case before every turn. It supplies the order, seeded customer report, current stock, proposal status, and replacement receipt. The browser cannot choose another case's owner or pass a fabricated approval as authoritative state.
 
-Conversation history matters too. If the employee says “Correction: both mugs broke,” the assistant needs to use that new information. If an earlier assistant message incorrectly claimed that a replacement shipped, the saved business record must take precedence.
+If the employee says “Correction: both mugs broke,” the assistant needs to use that new information. If an earlier assistant message incorrectly claimed that a replacement shipped, the saved business record must take precedence.
 
-The [agent configuration](https://github.com/mattlgroff/custom-agent-harness/blob/main/src/lib/agent.ts) uses `prepareCall` to load that context. Its main pieces are:
+The [agent configuration](https://github.com/mattlgroff/custom-agent-harness/blob/main/src/lib/agent.ts) uses `prepareCall` to load that context.
 
 ```ts
 // Abridged wiring; see agent.ts for the instructions and implementations.
@@ -71,8 +65,6 @@ return new ToolLoopAgent({
   maxRetries: 1,
 });
 ```
-
-The eight-step limit bounds a turn. It does not tell us whether the agent used those steps well. We test that separately.
 
 ## Give each tool a specific job
 
@@ -89,7 +81,7 @@ The assistant has six tools:
 
 Each business tool is scoped to the case on the server. The model supplies an order number or damaged quantity where needed, but it cannot select another owner or run arbitrary SQL. It has no approval or shipping tool.
 
-Suggested replies deserve the same scrutiny as assistant prose. A chip saying “Draft a reply to the customer” can save typing. A chip saying “Both mugs were cracked” can introduce a fact nobody supplied. Once clicked, that invented detail becomes a user message in the next turn.
+“Draft a reply to the customer” saves typing. “Both mugs were cracked” introduces an unverified fact that becomes a user message when clicked.
 
 Suggestions appear above the composer and submit through the normal chat endpoint. They do not perform approvals. Old suggestions disappear when their saved proposal status no longer matches the case.
 
@@ -99,13 +91,13 @@ Suggestions appear above the composer and submit through the normal chat endpoin
 
 ## Record approval outside the model
 
-The support employee is the reviewer. The UI needs to make their next action clear: review the saved proposal, then approve or decline it.
+Dex Horthy's [12-Factor Agents](https://github.com/humanlayer/12-factor-agents) calls for owned control flow and human intervention. Here, the employee approves through an application endpoint, with credentials the model never receives.
 
-The approval endpoint uses a separately authenticated reviewer session. When the employee clicks **Approve**, the server checks case ownership, locks the relevant records, and rechecks policy, quantity, and stock. It saves the replacement receipt and stock change in one PostgreSQL transaction.
+When the employee clicks **Approve**, the server checks case ownership, locks the relevant records, and rechecks policy, quantity, and stock. It saves the replacement receipt and stock change in one PostgreSQL transaction.
 
 Repeating the approval request returns the same receipt without decrementing stock again. A declined proposal cannot later be approved. These rules live in [application code](https://github.com/mattlgroff/custom-agent-harness/blob/main/src/lib/store.ts), where deterministic tests can verify them.
 
-The first customer-facing drafts also exposed a workflow mistake. They talked about “pending human review,” as though the employee were waiting for somebody else. The agent now receives instructions to address the employee directly and keep internal approval guidance outside the customer draft. The evals check how consistently the models follow that distinction.
+Early customer drafts said “pending human review,” as though the employee were waiting for somebody else. The agent now receives instructions to address the employee directly and keep internal approval guidance outside the customer draft.
 
 ![A customer reply draft after the replacement was approved](screenshots/live-approved.png)
 
@@ -115,19 +107,13 @@ For this local demo, a generated reviewer token unlocks the approval controls. A
 
 ## What passing tests missed
 
-The integration tests established useful facts: proposals persist, duplicate approvals do not consume stock twice, and one case cannot access another case's records. The live browser test also restarts PostgreSQL between proposal and approval, then reloads the conversation.
+Integration tests check persistence, duplicate approvals, and case ownership. The live browser test also restarts PostgreSQL between proposal and approval, then reloads the conversation.
 
-Those checks missed several bad support interactions:
+Those checks initially missed the context and customer-copy failures above, plus suggestions to keep checking status instead of recording a decision. Later evals also found invented damage details and unsupported tracking-update promises.
 
-- Asking for facts already visible in the case.
-- Putting internal review language in a customer reply.
-- Offering repeated status checks when the employee needs to record a decision.
-- Suggesting invented damage details as clickable answers.
-- Promising future tracking updates without a workflow that provides them.
+A “no proposal saved” assertion also passes when the model attempts an ineligible replacement and the application blocks it. Our tool-selection eval must flag that attempted call.
 
-A test that asserts “no proposal was saved” can pass even when the agent tried to create an ineligible proposal and the application blocked it. That proves the guard worked. To evaluate tool selection, we also need to inspect the attempted call.
-
-The [eval audit](https://github.com/mattlgroff/custom-agent-harness/blob/main/docs/evals/audit.md), guided by [Eval Skills](https://github.com/ai-evals-course/evals-skills), made those gaps explicit. It led to a separate model comparison with expectations written before the run.
+The [eval audit](https://github.com/mattlgroff/custom-agent-harness/blob/main/docs/evals/audit.md), guided by [Eval Skills](https://github.com/ai-evals-course/evals-skills), documents these gaps.
 
 ## Compare Sol and Luna on the same conversations
 
@@ -135,7 +121,7 @@ The golden set contains ten scenarios, including missing information, corrected 
 
 The suite uses code checks for required and forbidden tools, prerequisite steps, quantities, and saved state. It permits the read-only checks to run in any order, including in parallel, but requires them before a proposal. Selected text checks catch known wording regressions.
 
-There are no LLM judge calls. I used Codex to author the expectations and separately review every resulting trace: the input history, tools, reply, and suggestions. Those judgments are recorded as **agent-authored review**, not human labels. The code checks remain useful, but they do not cover every semantic criterion in that review.
+There are no LLM judge calls. I used Codex to author the expectations and separately review every resulting trace: the input history, tools, reply, and suggestions. The table separates **Codex review judgments** from code-check results.
 
 Both models ran through Bedrock at medium reasoning. Two repetitions produced 24 evaluated turns per model:
 
@@ -147,11 +133,11 @@ Both models ran through Bedrock at medium reasoning. Two repetitions produced 24
 | Suggestion sets passing Codex review | 18/24 | 19/24 |
 | Mean observed latency per turn | 3.08 s | 2.33 s |
 
-Luna was faster in this run and slightly ahead on suggestion sets. It also made more unsupported customer promises. Both models invented damage details in suggestions, and both attempted an expired-order replacement that the application blocked.
+Luna was faster but made more unsupported customer promises. Both models invented damage details in suggestions and attempted expired-order replacements.
 
-The [report and per-turn evidence](https://github.com/mattlgroff/custom-agent-harness/blob/main/docs/evals/comparison.md) include disagreements between code checks and trace review. For example, a regex flagged checking stock after replenishment as a repeated-check loop; the review accepted it because the suggestion depended on changed state. Meanwhile, paraphrased promises of future updates passed the text checks and failed review.
+The [per-turn report](https://github.com/mattlgroff/custom-agent-harness/blob/main/docs/evals/comparison.md) explains disagreements: a regex flagged checking stock after replenishment, which Codex accepted because the state would have changed. Paraphrased promises of future updates passed text checks but failed review.
 
-These are small, correlated development results. They do not establish production failure rates, dollar savings, or model equivalence. Sol remains the default, and the unresolved failures are documented. The harness was held fixed during the comparison so prompt edits would not change the experiment halfway through.
+The harness stayed fixed during the comparison. These small, correlated development results do not establish production failure rates, dollar savings, or model equivalence. Sol remains the default.
 
 ## Run the app and the comparison
 
@@ -190,12 +176,8 @@ You can rerun the code checks on the published results without calling a model:
 npm run eval:compare -- --score-only docs/evals/results/sol-luna-2026-09-13
 ```
 
-That command currently exits nonzero because the recorded outputs contain failures. Rescoring should preserve those failures until there is a reason to change the expectations or the evaluator.
+That command currently exits nonzero because the recorded outputs contain failures.
 
-## What I would carry into another domain
+## What still needs work
 
-Dex Horthy's [12-Factor Agents](https://github.com/humanlayer/12-factor-agents) connects several choices in this example: explicit context, structured tools, owned control flow, and human intervention. Kyle's HumanLayer post also argues for changing the harness in response to observed failures. Neither requires adding every available agent feature to a small application.
-
-For another domain, start by writing down the job, the facts already available, and the actions the agent may request. Put the business rules in code. Then test conversations that force the model to use those facts, handle corrections, and explain a blocked action.
-
-The next work on this POC is specific: prevent suggestions from inventing customer facts, stop offering approval actions as chat replies, and remove unsupported follow-up promises. After those changes, rerun the same golden set and add fresh cases. The existing results give us something concrete to improve against.
+The next changes should prevent suggestions from inventing customer facts, stop offering approval actions as chat replies, and remove unsupported follow-up promises. Then rerun the golden set and add fresh cases to see whether the fixes generalize.
