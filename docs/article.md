@@ -43,9 +43,23 @@ The SDK also has a [`HarnessAgent`](https://ai-sdk.dev/docs/ai-sdk-harnesses/ove
 
 [AI Elements](https://ai-sdk.dev/elements) renders the conversation, tool calls, and suggested replies. The workbench reads the order and resolution directly from the database.
 
-## Give the agent the case it is working on
+## Astra missed the case that was right there
 
-The first version showed the order on the page but never supplied it to the agent. When I typed “Let's replace it for them,” it asked for the order number and damage details.
+I used GPT-6 Astra in Codex to build this POC. Sol and Luna are the models running inside the support agent; Astra was the coding agent building its harness.
+
+[Dex asked on X](https://x.com/dexhorthy/status/2096702036133961940):
+
+> why are models bad at harness engineering!?
+
+[Kyle quoted that post](https://x.com/0xblacklight/status/2096758014628016315) and wrote:
+
+> models are VERY bad at building harnesses & agents
+
+That matches my experience here. Astra was terrible at getting the first version of this harness right.
+
+I opened the case and said, “Let's replace it for them.” It asked me for the order number. The order was right there on the page, but we hadn't given it to the model.
+
+That is basic context engineering. I should not have had to discover it by using the demo.
 
 The server now loads the authorized case before every turn. It supplies the order, seeded customer report, current stock, proposal status, and replacement receipt. The browser cannot choose another case's owner or pass a fabricated approval as authoritative state.
 
@@ -97,7 +111,11 @@ When the employee clicks **Approve**, the server checks case ownership, locks th
 
 Repeating the approval request returns the same receipt without decrementing stock again. A declined proposal cannot later be approved. These rules live in [application code](https://github.com/mattlgroff/custom-agent-harness/blob/main/src/lib/store.ts), where deterministic tests can verify them.
 
-Early customer drafts said “pending human review,” as though the employee were waiting for somebody else. The agent now receives instructions to address the employee directly and keep internal approval guidance outside the customer draft.
+Then I said, “Let the customer know.” It drafted a message saying the replacement was pending human review.
+
+I'm the human using the workbench. The app needed to tell me how to record my decision, not write to the customer as though we were waiting on somebody else. Customers do not need an explanation of our AI workflow.
+
+We changed the instructions to address the employee directly and keep approval guidance outside the customer draft. The later evals still found failures.
 
 ![A customer reply draft after the replacement was approved](screenshots/live-approved.png)
 
@@ -105,11 +123,13 @@ Early customer drafts said “pending human review,” as though the employee we
 
 For this local demo, a generated reviewer token unlocks the approval controls. A real application would use its own user authentication and authorization.
 
-## What passing tests missed
+## The tests passed. The support experience was bad.
 
-Integration tests check persistence, duplicate approvals, and case ownership. The live browser test also restarts PostgreSQL between proposal and approval, then reloads the conversation.
+Astra kept reporting successful tests. The tests checked persistence, duplicate approvals, and case ownership. A live browser test even restarted PostgreSQL and reloaded the conversation.
 
-Those checks initially missed the context and customer-copy failures above, plus suggestions to keep checking status instead of recording a decision. Later evals also found invented damage details and unsupported tracking-update promises.
+But I was still catching obvious problems by talking to the agent. It didn't know its case, misunderstood who was reviewing the replacement, and suggested checking status again instead of helping me act. These are things I expect an AI engineer to catch when designing the workflow.
+
+I asked for an eval suite that judged the conversation, the tools it called, and the suggestions it made.
 
 A “no proposal saved” assertion also passes when the model attempts an ineligible replacement and the application blocks it. Our tool-selection eval must flag that attempted call.
 
@@ -117,11 +137,11 @@ The [eval audit](https://github.com/mattlgroff/custom-agent-harness/blob/main/do
 
 ## Compare Sol and Luna on the same conversations
 
-The golden set contains ten scenarios, including missing information, corrected quantities, expired orders, unavailable stock, approval and rejection, and incorrect assistant claims in conversation history. Two scenarios carry live generated responses into a second turn. Other cases start with fixed history to test whether the model follows stale or false claims.
+I wanted to know whether Luna could do this job as well as Sol. We wrote ten scenarios covering missing information, corrected quantities, expired orders, unavailable stock, approval and rejection, and incorrect assistant claims in conversation history. Two scenarios carry live generated responses into a second turn. Other cases start with fixed history to test whether the model follows stale or false claims.
 
 The suite uses code checks for required and forbidden tools, prerequisite steps, quantities, and saved state. It permits the read-only checks to run in any order, including in parallel, but requires them before a proposal. Selected text checks catch known wording regressions.
 
-There are no LLM judge calls. I used Codex to author the expectations and separately review every resulting trace: the input history, tools, reply, and suggestions. The table separates **Codex review judgments** from code-check results.
+I didn't want another model call grading every response. I had Codex write the expected behavior, then read and judge the recorded conversations. The suite itself runs code checks and saves the traces. The table separates those checks from **Codex's review judgments**.
 
 Both models ran through Bedrock at medium reasoning. Two repetitions produced 24 evaluated turns per model:
 
@@ -137,7 +157,7 @@ Luna was faster but made more unsupported customer promises. Both models invente
 
 The [per-turn report](https://github.com/mattlgroff/custom-agent-harness/blob/main/docs/evals/comparison.md) explains disagreements: a regex flagged checking stock after replenishment, which Codex accepted because the state would have changed. Paraphrased promises of future updates passed text checks but failed review.
 
-The harness stayed fixed during the comparison. These small, correlated development results do not establish production failure rates, dollar savings, or model equivalence. Sol remains the default.
+We kept the harness fixed while comparing models. Ten scenarios run twice are not enough to tell me how either model will perform in production, or whether switching saves money. Sol remains the default.
 
 ## Run the app and the comparison
 
@@ -180,4 +200,6 @@ That command currently exits nonzero because the recorded outputs contain failur
 
 ## What still needs work
 
-The next changes should prevent suggestions from inventing customer facts, stop offering approval actions as chat replies, and remove unsupported follow-up promises. Then rerun the golden set and add fresh cases to see whether the fixes generalize.
+I still want to stop the suggestions from inventing customer facts, offering approvals they cannot execute, and promising follow-up nobody has arranged. Then we can rerun the golden set and try fresh cases.
+
+Astra built the application, but I had to tell it why the support experience was wrong. Getting it to write the code did not mean it understood the job.
