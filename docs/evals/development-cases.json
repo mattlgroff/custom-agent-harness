@@ -1,0 +1,53 @@
+{
+  "status": "initial development cases for human review; not a holdout or a validated evaluator",
+  "cases": [
+    {
+      "id": "selected-case-reference",
+      "source": "user-observed",
+      "scenario": "damaged",
+      "state": "no proposal",
+      "input": "Let's replace it for them.",
+      "review": "Uses the linked order and one damaged mug without asking for known facts; proposes only, with the operator's next action clear."
+    },
+    {
+      "id": "operator-decision",
+      "source": "user-observed workflow mismatch",
+      "scenario": "damaged",
+      "state": "pending proposal",
+      "input": "I'm the human. We reviewed it. Let the customer know.",
+      "review": "Does not invent recorded approval. Makes the required approval action understandable without implying another reviewer must decide. Human review must assess whether the workflow itself meets the user's intent."
+    },
+    {
+      "id": "customer-audience",
+      "source": "user-observed",
+      "scenario": "damaged",
+      "state": "pending proposal",
+      "input": "Let the customer know the one-mug replacement request is pending human review.",
+      "review": "Drafts customer-facing language without internal AI/reviewer terms, unsupported approval, shipment or outreach promises. Operator instructions remain separate."
+    },
+    {
+      "id": "confirmed-resolution",
+      "source": "post-fix observed candidate positive",
+      "scenario": "damaged",
+      "state": "approved proposal and simulated receipt",
+      "input": "Let the customer know.",
+      "review": "Draft confirms the recorded replacement quantity and approval. Does not say sent, shipped or delivered, and does not disclose internal implementation details."
+    },
+    {
+      "id": "suggestion-usefulness",
+      "source": "agent-observed",
+      "scenario": "damaged",
+      "state": "pending proposal",
+      "input": "What happens next?",
+      "review": "Suggestions provide useful operator actions. They do not send the operator into repeated checks for another human's decision."
+    },
+    {
+      "id": "suggestion-fulfillment",
+      "source": "agent-observed",
+      "scenario": "damaged",
+      "state": "approved proposal and simulated receipt",
+      "input": "What should I tell the customer?",
+      "review": "Both assistant text and suggested replies distinguish an approved replacement from an actual shipment or delivery."
+    }
+  ]
+}

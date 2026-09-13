@@ -119,3 +119,7 @@ npm run db:migrate
 ```
 
 Never commit `.env.local`. Short-lived provider credentials must be replaced when they expire.
+
+## Domain evaluation work
+
+The integration checks do not establish support-workflow quality. See the [initial eval audit](docs/evals/audit.md) and [development cases](docs/evals/development-cases.json). Run `npm run eval:domain` to collect fresh outputs with the configured paid model into ignored `.evals/<timestamp>/` artifacts. This records traces for review; it does not assign quality passes. The first six probes still surfaced a possible low-value suggestion loop. Human review and independent holdout evaluation remain outstanding.
