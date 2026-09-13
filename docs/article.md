@@ -185,3 +185,13 @@ Dex Horthy's [12-Factor Agents](https://github.com/humanlayer/12-factor-agents) 
 I would not add features just to fill twelve rows in a table. Here, persistence and approval exist because someone needs to review a replacement after the model has finished its turn. The database is authoritative because inventory and receipts must agree.
 
 That is the useful starting point for another domain too: pick the real task, decide what the agent may do, define how you will verify the outcome, and keep the harness small enough to understand.
+
+## Evaluate the domain workflow before changing models
+
+The first tests in this project verified that tools ran and approvals persisted. They missed failures in the support experience: the assistant asked for facts already on the page, leaked internal review language into a customer draft, and suggested checking again instead of helping the operator make a decision.
+
+The comparison runner now accepts explicit models and uses a shared agent-authored golden set. Its ten scenarios include multi-turn clarification, approval and rejection, incorrect conversation history, policy limits, and customer-copy requests. Code checks evaluate required and forbidden tools, prerequisite steps, quantities and saved state. There is no LLM judge in the suite. Codex authored the expectations and separately reviewed the resulting traces, including suggested replies. Those review judgments are recorded as agent judgments, not human labels.
+
+Across two repetitions, Sol and Luna each produced 24 evaluated turns. Codex judged the tool decisions acceptable in 23 Sol turns and 22 Luna turns; suggestion sets in 18 Sol turns and 19 Luna turns; and responses in 23 Sol turns and 20 Luna turns. Both models invented damage details in suggested answers, and both attempted an expired-order replacement that the application blocked. Luna also made more unsupported customer-update promises in this sample. These are small, correlated development results, not production quality estimates.
+
+The [eval report and recorded traces](https://github.com/mattlgroff/custom-agent-harness/blob/main/docs/evals/comparison.md) show why a cheaper or faster model should be compared on the actual workflow. A successful tool call does not prove that the assistant chose the right action or gave the operator something useful to say.

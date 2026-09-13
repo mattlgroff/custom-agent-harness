@@ -10,6 +10,7 @@ export function createSupportAgent(
   caseId: string,
   owner: string,
   runToken: string,
+  modelName?: string,
 ) {
   const scopedTools = {
     suggestReplies: tool({
@@ -119,7 +120,7 @@ export function createSupportAgent(
     }),
   };
   return new ToolLoopAgent({
-    model: supportModel(),
+    model: supportModel(modelName),
     providerOptions: {
       openai: {
         // Bedrock prefixes the model ID, so the provider cannot infer GPT reasoning support.

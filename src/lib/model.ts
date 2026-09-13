@@ -1,7 +1,7 @@
 import { createOpenAI } from "@ai-sdk/openai";
 import { MODEL } from "./fixtures";
 
-export function modelConfiguration() {
+export function modelConfiguration(model: string = MODEL) {
   const provider = process.env.AI_PROVIDER || "openai";
   if (provider === "bedrock") {
     const region = process.env.BEDROCK_REGION || "us-east-2";
@@ -11,7 +11,7 @@ export function modelConfiguration() {
       provider,
       apiKey: process.env.BEDROCK_API_KEY,
       baseURL: `https://bedrock-mantle.${region}.api.aws/openai/v1`,
-      modelId: `openai.${MODEL}`,
+      modelId: `openai.${model}`,
     };
   }
   if (provider !== "openai")
@@ -20,12 +20,12 @@ export function modelConfiguration() {
     provider,
     apiKey: process.env.OPENAI_API_KEY,
     baseURL: "https://api.openai.com/v1",
-    modelId: MODEL,
+    modelId: model,
   };
 }
 
-export function supportModel() {
-  const { apiKey, baseURL, modelId } = modelConfiguration();
+export function supportModel(model: string = MODEL) {
+  const { apiKey, baseURL, modelId } = modelConfiguration(model);
   if (!apiKey || apiKey.startsWith("replace-"))
     throw new Error("Configure the selected provider API key in .env.local.");
   return createOpenAI({ apiKey, baseURL }).responses(modelId);

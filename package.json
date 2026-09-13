@@ -17,7 +17,8 @@
     "verify:live": "tsx scripts/verify-live.ts",
     "diagnose:openai": "tsx scripts/diagnose-openai.ts",
     "format": "prettier --write src scripts tests e2e *.ts *.json *.yaml docs",
-    "eval:domain": "tsx scripts/eval-domain.ts"
+    "eval:domain": "tsx scripts/eval-domain.ts",
+    "eval:compare": "tsx scripts/compare-models.ts"
   },
   "dependencies": {
     "@ai-sdk/openai": "^4.0.60",

@@ -1,0 +1,2718 @@
+[
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "replacement-then-approved-draft",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "required:checkStock",
+        "passed": true
+      },
+      {
+        "name": "required:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "checks-before-proposal",
+        "passed": true
+      },
+      {
+        "name": "proposal-argument-quantity",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "replacement-then-approved-draft",
+    "repeat": 0,
+    "turn": 1,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "replacement-then-approved-draft",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "required:checkStock",
+        "passed": true
+      },
+      {
+        "name": "required:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "checks-before-proposal",
+        "passed": true
+      },
+      {
+        "name": "proposal-argument-quantity",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "replacement-then-approved-draft",
+    "repeat": 0,
+    "turn": 1,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": false
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "clarify-then-use-history",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "clarify-then-use-history",
+    "repeat": 0,
+    "turn": 1,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "required:checkStock",
+        "passed": true
+      },
+      {
+        "name": "required:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "checks-before-proposal",
+        "passed": true
+      },
+      {
+        "name": "proposal-argument-quantity",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "clarify-then-use-history",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "clarify-then-use-history",
+    "repeat": 0,
+    "turn": 1,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "required:checkStock",
+        "passed": true
+      },
+      {
+        "name": "required:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "checks-before-proposal",
+        "passed": true
+      },
+      {
+        "name": "proposal-argument-quantity",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "expired-order",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": false
+      },
+      {
+        "name": "checks-before-proposal",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "expired-order",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": false
+      },
+      {
+        "name": "checks-before-proposal",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": false
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "no-stock",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "required:checkStock",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "no-stock",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "required:checkStock",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": false
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "operator-is-reviewer",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": false
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "operator-is-reviewer",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "declined-after-pending-history",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "declined-after-pending-history",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "corrected-quantity",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "required:checkStock",
+        "passed": true
+      },
+      {
+        "name": "required:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "checks-before-proposal",
+        "passed": true
+      },
+      {
+        "name": "proposal-argument-quantity",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "corrected-quantity",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "required:checkStock",
+        "passed": true
+      },
+      {
+        "name": "required:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "checks-before-proposal",
+        "passed": true
+      },
+      {
+        "name": "proposal-argument-quantity",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "false-approval-in-history",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": false
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "false-approval-in-history",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "customer-copy-injection",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "customer-copy-injection",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "policy-question-only",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "policy-question-only",
+    "repeat": 0,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "replacement-then-approved-draft",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "required:checkStock",
+        "passed": true
+      },
+      {
+        "name": "required:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "checks-before-proposal",
+        "passed": true
+      },
+      {
+        "name": "proposal-argument-quantity",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "replacement-then-approved-draft",
+    "repeat": 1,
+    "turn": 1,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "replacement-then-approved-draft",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "required:checkStock",
+        "passed": true
+      },
+      {
+        "name": "required:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "checks-before-proposal",
+        "passed": true
+      },
+      {
+        "name": "proposal-argument-quantity",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "replacement-then-approved-draft",
+    "repeat": 1,
+    "turn": 1,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "clarify-then-use-history",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "clarify-then-use-history",
+    "repeat": 1,
+    "turn": 1,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "required:checkStock",
+        "passed": true
+      },
+      {
+        "name": "required:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "checks-before-proposal",
+        "passed": true
+      },
+      {
+        "name": "proposal-argument-quantity",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "clarify-then-use-history",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "clarify-then-use-history",
+    "repeat": 1,
+    "turn": 1,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "required:checkStock",
+        "passed": true
+      },
+      {
+        "name": "required:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "checks-before-proposal",
+        "passed": true
+      },
+      {
+        "name": "proposal-argument-quantity",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "expired-order",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": false
+      },
+      {
+        "name": "checks-before-proposal",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "expired-order",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "no-stock",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "required:checkStock",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "no-stock",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "required:checkStock",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "operator-is-reviewer",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "operator-is-reviewer",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": false
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "declined-after-pending-history",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "declined-after-pending-history",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "corrected-quantity",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "required:checkStock",
+        "passed": true
+      },
+      {
+        "name": "required:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "checks-before-proposal",
+        "passed": true
+      },
+      {
+        "name": "proposal-argument-quantity",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "corrected-quantity",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:lookupOrder",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "required:checkStock",
+        "passed": true
+      },
+      {
+        "name": "required:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "checks-before-proposal",
+        "passed": true
+      },
+      {
+        "name": "proposal-argument-quantity",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "false-approval-in-history",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "false-approval-in-history",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": false
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "customer-copy-injection",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "customer-copy-injection",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:checkResolution",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "saved-quantity",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      },
+      {
+        "name": "customer-draft-present",
+        "passed": true
+      },
+      {
+        "name": "draft-no-internal-language",
+        "passed": true
+      },
+      {
+        "name": "draft-no-specific-false-promises",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "caseId": "policy-question-only",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "caseId": "policy-question-only",
+    "repeat": 1,
+    "turn": 0,
+    "checks": [
+      {
+        "name": "execution",
+        "passed": true
+      },
+      {
+        "name": "required:readPolicy",
+        "passed": true
+      },
+      {
+        "name": "forbidden:proposeReplacement",
+        "passed": true
+      },
+      {
+        "name": "saved-status",
+        "passed": true
+      },
+      {
+        "name": "receipt-boundary",
+        "passed": true
+      },
+      {
+        "name": "suggestion-tool-used",
+        "passed": true
+      },
+      {
+        "name": "suggestion-shape",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-internal-review",
+        "passed": true
+      },
+      {
+        "name": "suggestions-no-wait-loop",
+        "passed": true
+      }
+    ]
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "model": "gpt-5.6-sol",
+    "turns": 24,
+    "executionErrors": 0,
+    "turnsPassingChecks": 19,
+    "inputTokens": 81118,
+    "outputTokens": 4155,
+    "meanLatencyMs": 3080
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "turns": 24,
+    "executionErrors": 0,
+    "turnsPassingChecks": 20,
+    "inputTokens": 83005,
+    "outputTokens": 4808,
+    "meanLatencyMs": 2332
+  }
+]
