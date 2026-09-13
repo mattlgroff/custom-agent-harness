@@ -198,8 +198,14 @@ npm run eval:compare -- --score-only docs/evals/results/sol-luna-2026-09-13
 
 That command currently exits nonzero because the recorded outputs contain failures.
 
-## What still needs work
+## You still have to use your brain
 
-I still want to stop the suggestions from inventing customer facts, offering approvals they cannot execute, and promising follow-up nobody has arranged. Then we can rerun the golden set and try fresh cases.
+I gave Astra instructions and examples for building this harness. It still missed the case context, confused the approval workflow, and treated passing tests as proof that the support experience worked. These were basic requirements I had to catch myself.
 
-Astra built the application, but I had to tell it why the support experience was wrong. Getting it to write the code did not mean it understood the job.
+I want the model to run prompts, try variations, and compare which version calls the right tools. That is useful work to delegate. I should design the tools, the system context, and the rules around them. I need to read the traces and use the application myself. A human needs to stay involved in the design and testing, not just click Approve inside the finished product.
+
+At Astra's launch, Greg Brockman said, “Welcome to the AGI era,” [according to Axios](https://www.axios.com/2026/09/03/openai-astra-gpt-6-agi-brockman).
+
+If this is AGI, I still had to tell it to give a support agent the case open on the screen.
+
+The next changes are concrete: stop suggestions from inventing customer facts, offering approvals they cannot execute, and promising follow-up nobody has arranged. Then rerun the golden set and try fresh cases. I want evidence that the workflow improved before calling the harness good.
