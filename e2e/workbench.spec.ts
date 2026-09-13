@@ -37,6 +37,18 @@ test("welcome renders and fits desktop and mobile", async ({ page }) => {
   await expect(
     page.getByRole("button", { name: /01 Eligible replacement/ }),
   ).toBeVisible();
+  await page.getByRole("button", { name: /01 Eligible replacement/ }).click();
+  await expect(
+    page.getByRole("heading", { name: "A mug arrived broken", level: 1 }),
+  ).toBeVisible();
+  const owner = (await page.context().cookies()).find(
+    (c) => c.name === "parcel_session",
+  )!.value;
+  owners.add(owner);
+  await page.getByRole("button", { name: "New case", exact: true }).click();
+  await expect(
+    page.getByRole("heading", { name: "Pick a case to explore" }),
+  ).toBeVisible();
 });
 test("reviewer authorization, persisted proposal, approval and replay", async ({
   page,

@@ -1463,3 +1463,22 @@ a {
     padding-top: 38px;
   }
 }
+
+@media (max-width: 620px) {
+  .sidebar .sidebar-heading {
+    display: flex;
+    position: absolute;
+    right: 20px;
+    top: 19px;
+    margin: 0;
+    font-size: 0;
+  }
+  .sidebar .sidebar-heading button {
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    background: #e3eadc;
+    border-radius: 6px;
+  }
+}
